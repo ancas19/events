@@ -1,0 +1,11 @@
+rootProject.name = 'events'
+
+include ':entrypoints'
+include ':postgres'
+include ':models'
+include ':use_cases'
+
+project(':entrypoints')?.projectDir = file('./infrastructure/entrypoints')
+project(':postgres')?.projectDir = file('./infrastructure/driven_adapters/postgres')
+project(':models')?.projectDir = file('./domain/models')
+project(':use_cases')?.projectDir = file('./applications/use_cases')
