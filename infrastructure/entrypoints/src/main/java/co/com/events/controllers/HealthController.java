@@ -1,6 +1,6 @@
 package co.com.events.controllers;
 
-import co.com.events.reponses.GeneralResponse;
+import co.com.events.responses.GeneralResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package co.com.events.reponses;
+package co.com.events.responses;
 
 import lombok.*;
 
