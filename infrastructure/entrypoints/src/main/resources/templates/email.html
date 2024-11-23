@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f7; /* Light gray background */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header img {
+            width: 150px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .content-section {
+            margin-top: 20px;
+        }
+        .content-section h2 {
+            color: #e74c3c; /* Red for excitement */
+        }
+        .content-section p {
+            margin: 10px 0;
+            color: #2c3e50;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e74c3c; /* Red for action */
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            background-color: #c0392b; /* Darker red on hover */
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <!-- Header -->
+    <div class="header">
+        <img src="https://i.ibb.co/RvFDTJX/events.png" alt="App Logo">
+    </div>
+    <!-- Content Fragment -->
+    <div th:utext="${body}"></div>
+
+    <div class="footer">
+        <p>&copy; 2024 Evnets App. All rights reserved.</p>
+        <p>123 Events Street, City, State, ZIP</p>
+</body>
+</html>
