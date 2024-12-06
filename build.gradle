@@ -44,7 +44,7 @@ subprojects {
 		testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 		implementation group: 'org.thymeleaf', name: 'thymeleaf', version: '3.1.2.RELEASE'
 		implementation "org.springframework.boot:spring-boot-starter-mail:${springVersion}"
-
+		implementation "org.springframework.boot:spring-boot-starter-thymeleaf:${springVersion}"
 		implementation group: 'io.lettuce', name: 'lettuce-core', version: '6.3.2.RELEASE'
 		implementation "org.springframework.boot:spring-boot-starter-data-redis:${springVersion}"
 		implementation group: 'redis.clients', name: 'jedis', version: '5.2.0'

@@ -2,7 +2,9 @@ package co.com.events.models.enums;
 
 public enum Constants {
 
-    VERIFICATION_EMAIL("VERIFICATION_EMAIL");
+    VERIFY_CODE("VERIFY_CODE"),
+    EMAIL_VERIFICATION("Email Verification"),
+    CODE("CODE_%s"),;
 
     private final String value;
      Constants(String value) {

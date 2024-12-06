@@ -6,9 +6,11 @@ import co.com.events.models.repositories.IUserRepositoryPort;
 import co.com.events.use_cases.interfaces.IUseCasesVoid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class VerifyUsernameAdapter implements IUseCasesVoid<String> {
     private final IUserRepositoryPort userRepositoryPort;
     @Override
