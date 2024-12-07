@@ -20,6 +20,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
     private final AccountAppService accountAppService;
 
+    @PostMapping()
+    public ResponseEntity<GeneralResponse<String>> createAccount(
+            @Valid @RequestBody EmailRequest emailRequest
+    ) {
+        this.accountAppService.createAccount(emailRequest.getEmail());
+        return ResponseEntity.ok(
+                GeneralResponse.<String>builder()
+                        .message(Messages.MESSAGE_ACCOUNT_CREATED.getMessage())
+                        .response(Messages.MESSAGE_ACCOUNT_CREATED.getMessage())
+                        .build()
+        );
+    }
+
 
     @PostMapping("/username")
     public ResponseEntity<GeneralResponse<String>> verifyUsername(
