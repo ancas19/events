@@ -10,13 +10,18 @@ public enum Messages {
     MESSAGE_GENERAL_FORBIDDEN("Forbidden"),
     MESSAGE_GENERAL_UNAUTHORIZED("Unauthorized"),
     MESSAGE_USERNAME_ALREADY_EXISTS("The username you entered is incorrect. Please try again."),
-
+    MESSAGE_PASSWORDS_DO_NOT_MATCH("The passwords do not match. Please try again."),
+    MESSAGE_ROLE_NOT_FOUND("The role was not found"),
+    MESSAGE_PHONE_NUMBER_ALREADY_EXISTS("Already exists a user with the phone number entered"),
+    MESSAGE_EMAIL_ALREADY_EXISTS("Email not available"),
+    MESSAGE_PASSWORD_ALREADY_EXISTS("The password already exists"),
 
     // Success messages
     MESSAGE_HEALTH_CHECK("Service is up and running"),
     MESSAGE_USERNAME_AVAILABLE("The username is available"),
     MESSAGE_CODE_VERIFIED("The code has been verified successfully"),
-    MESSAGE_VERIFICATION_CODE("The verification code has been sent to your email"),;
+    MESSAGE_VERIFICATION_CODE("The verification code has been sent to your email"),
+    MESSAGE_ACCOUNT_CREATED("The account has been created successfully"),;
     private final String message;
 
     Messages(String message) {

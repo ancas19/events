@@ -4,7 +4,9 @@ public enum Constants {
 
     VERIFY_CODE("VERIFY_CODE"),
     EMAIL_VERIFICATION("Email Verification"),
-    CODE("CODE_%s"),;
+    CODE("CODE_%s"),
+    NO("NO"),
+    SI("SI"),;
 
     private final String value;
      Constants(String value) {
