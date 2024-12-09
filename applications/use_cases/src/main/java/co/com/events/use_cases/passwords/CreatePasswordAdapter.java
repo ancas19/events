@@ -7,6 +7,7 @@ import co.com.events.models.repositories.IHistoricalPasswordsRepositoryPort;
 import co.com.events.use_cases.interfaces.IUseCases;
 import co.com.events.use_cases.interfaces.IUseCasesVoid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import static co.com.events.models.enums.Constants.NO;
 @RequiredArgsConstructor
 public class CreatePasswordAdapter  implements IUseCasesVoid<HistoricalPassword> {
     private final IHistoricalPasswordsRepositoryPort historicalPasswordRepositoryPort;
+    private final BCryptPasswordEncoder passwordEncoder;
     @Override
     public void execute(HistoricalPassword s) {
         if (historicalPasswordRepositoryPort.verifyExistsPassword(s.getUserId(), s.getPassword())) {
@@ -27,6 +29,7 @@ public class CreatePasswordAdapter  implements IUseCasesVoid<HistoricalPassword>
             deactivateCurrentPassword(userPasswords);
             deleteExcessPasswords(userPasswords);
         }
+        s.setPassword(passwordEncoder.encode(s.getPassword()));
         historicalPasswordRepositoryPort.save(s);
     }
     private void deactivateCurrentPassword(List<HistoricalPassword> userPasswords) {

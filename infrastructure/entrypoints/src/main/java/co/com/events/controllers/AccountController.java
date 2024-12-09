@@ -1,6 +1,7 @@
 package co.com.events.controllers;
 
 import co.com.events.models.enums.Messages;
+import co.com.events.request.AccountRequest;
 import co.com.events.request.CodeVerificationRequest;
 import co.com.events.request.EmailRequest;
 import co.com.events.responses.GeneralResponse;
@@ -22,9 +23,9 @@ public class AccountController {
 
     @PostMapping()
     public ResponseEntity<GeneralResponse<String>> createAccount(
-            @Valid @RequestBody EmailRequest emailRequest
-    ) {
-        this.accountAppService.createAccount(emailRequest.getEmail());
+            @Valid @RequestBody AccountRequest accountRequest
+    ) throws MessagingException {
+        this.accountAppService.createAccount(accountRequest);
         return ResponseEntity.ok(
                 GeneralResponse.<String>builder()
                         .message(Messages.MESSAGE_ACCOUNT_CREATED.getMessage())

@@ -3,7 +3,6 @@ package co.com.events.use_cases.account;
 import co.com.events.models.domain.*;
 import co.com.events.models.enums.Messages;
 import co.com.events.models.exceptions.BadRequestException;
-import co.com.events.models.repositories.IPeopleRepositoryPort;
 import co.com.events.use_cases.interfaces.IUseCasesVoid;
 import co.com.events.use_cases.passwords.CreatePasswordAdapter;
 import co.com.events.use_cases.people.CreatePeopleAdapter;
@@ -20,7 +19,7 @@ import static co.com.events.models.enums.Constants.SI;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class CreateAccouintAdapter implements IUseCasesVoid<Account> {
+public class CreateAccountAdapter implements IUseCasesVoid<Account> {
     private final FindRoleByNameAdapter findRoleByNameAdapter;
     private final CreatePeopleAdapter createPeopleAdapter;
     private  final CreateUserAdapter createUserAdapter;

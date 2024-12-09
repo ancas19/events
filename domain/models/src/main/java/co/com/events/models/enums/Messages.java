@@ -15,13 +15,20 @@ public enum Messages {
     MESSAGE_PHONE_NUMBER_ALREADY_EXISTS("Already exists a user with the phone number entered"),
     MESSAGE_EMAIL_ALREADY_EXISTS("Email not available"),
     MESSAGE_PASSWORD_ALREADY_EXISTS("The password already exists"),
+    MESSAGE_USER_NOT_FOUND("User not exist"),
+    MESSAGE_LOGIN_FAILED("Login failed"),
+    MESSAGE_EMAIL_NOT_VERIFIED("The email has not been verified"),
+    MESSAGE_PEOPLE_NOT_FOUND("People information not found"),
+
+
 
     // Success messages
     MESSAGE_HEALTH_CHECK("Service is up and running"),
+    MESSAGE_LOGIN_SUCCESS("Login success"),
     MESSAGE_USERNAME_AVAILABLE("The username is available"),
     MESSAGE_CODE_VERIFIED("The code has been verified successfully"),
     MESSAGE_VERIFICATION_CODE("The verification code has been sent to your email"),
-    MESSAGE_ACCOUNT_CREATED("The account has been created successfully"),;
+    MESSAGE_ACCOUNT_CREATED("The account has been created successfully"), ;
     private final String message;
 
     Messages(String message) {

@@ -19,7 +19,7 @@ public class HistoricalPasswordsEntity {
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "password", nullable = false, length = 255)
+    @Column(name = "value", nullable = false, length = 255)
     private String password;
 
     @Column(name = "active", nullable = false, length = 5)
