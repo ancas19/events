@@ -30,10 +30,11 @@ public class LoginAdapter implements IUseCases<AuthLogin, AuthToken> {
     private final FindFullPeopleInformationAdapter findPeopleFullInformationAdapter;
     private final IUserRepositoryPort userRepositoryPort;
     @Override
-    public AuthToken execute(AuthLogin authLogin) {
+    public AuthToken execute(AuthLogin authLogin) throws MessagingException, IOException {
         User user = (User) userDetailsAdapter.loadUserByUsername(authLogin.getUsername());
         Long personId = userRepositoryPort.findPersonIdByUsername(authLogin.getUsername());
         if (!verifyPassword(authLogin.getPassword(), user.getPassword())) {
+            verifyAttempts(authLogin.getUsername());
             throw new UnauthorizedException(Messages.MESSAGE_LOGIN_FAILED.getMessage());
         }
         String token = jwtAdapter.generateToken(user);
@@ -48,7 +49,7 @@ public class LoginAdapter implements IUseCases<AuthLogin, AuthToken> {
         return passwordEncoder.matches(enteredPassword, storedPassword);
     }
 
-    public void verifyAttempts(String username, Long personId) throws MessagingException, IOException {
+    public void verifyAttempts(String username) throws MessagingException, IOException {
         Attempt attempt = attemptRepositoryPort.find(username);
         if (Objects.isNull(attempt)) {
             saveNewAttempt(username);
