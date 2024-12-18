@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 @Repository
@@ -16,29 +18,28 @@ public interface UserRepository extends JpaRepository<UsersEntity,Long> {
 
     boolean existsByEmail(String email);
     @Query(value = """
-            SELECT new co.com.events.models.domain.UserLoginInformation(
-                u.id,
-                u.username,
-                u.email,
-                u.change_password,
-                u.verify_email,
-                u.person_id,
-                (
-                    select hp.value from historical_passwords hp\s
-                    where hp.user_id=u.user_id
-                    and hp.active='SI'
-                ),
-                (
-                    select STRING_AGG(p.value, ', ') AS permissions from permissions_roles pr\s
-                    inner join permissions p on pr.permission_id=p.permission_id\s
-                    where pr.role_id=u.role_id
-                )
-            ) 
-            FROM UsersEntity u
+            SELECT 
+               u.user_id AS ID,
+               u.username AS USERNAME,
+               u.email AS EMAIL,
+               u.change_password AS CHANGE_PASSWORD,
+               u.verify_email AS VERIFY_EMAIL,
+               u.person_id AS PERSON_ID,
+               (
+                   select hp.value from historical_passwords hp
+                   where hp.user_id=u.user_id
+                   and hp.active='SI'
+                   ) AS PASSWORD,
+                   (
+                       select STRING_AGG(p.value, ', ')  from permissions_roles pr
+                       inner join permissions p on pr.permission_id=p.permission_id
+                       where pr.role_id=u.role_id
+                   ) AS PERMISSIONS
+               FROM users u
             WHERE u.username = :username OR u.email = :username           
             """,
             nativeQuery = true)
-    Optional<UserLoginInformation> findByEmailOrUsername(@Param("username") String username);
+    Optional<Map<String, Object>> findByEmailOrUsername(@Param("username") String username);
 
     @Query(value = """
             SELECT u.personId

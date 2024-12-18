@@ -21,7 +21,8 @@ public class JwtAdapter {
     private String secret;
     @Value("${jwt.expiration}")
     private Integer expirationTime;
-    private IJwtRepositoryPort jwtRepositoryPort;
+
+    private final IJwtRepositoryPort jwtRepositoryPort;
 
     public void saveToken(String token, String data) {
         jwtRepositoryPort.save(token, data);

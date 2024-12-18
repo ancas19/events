@@ -34,8 +34,7 @@ public class UserDetailsAdapter implements UserDetailsService {
     }
 
     private Set<SimpleGrantedAuthority> getAuthority(UserLoginInformation user) {
-        List<String> permissions = Arrays.asList(user.getPermissions().split(","));
-        return permissions.stream().map(SimpleGrantedAuthority::new)
+        return user.getPermissions().stream().map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toSet());
 
     }

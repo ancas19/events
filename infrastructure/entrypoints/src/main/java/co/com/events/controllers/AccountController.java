@@ -7,6 +7,7 @@ import co.com.events.request.EmailRequest;
 import co.com.events.request.UsernameRequest;
 import co.com.events.responses.GeneralResponse;
 import co.com.events.services.AccountAppService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Account")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1.0/accounts")

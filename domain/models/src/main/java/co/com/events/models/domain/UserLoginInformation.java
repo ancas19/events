@@ -2,6 +2,8 @@ package co.com.events.models.domain;
 
 import lombok.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -15,6 +17,6 @@ public class UserLoginInformation  {
     private String verifyemail;
     private Long personId;
     private String password;
-    private String permissions;
+    private List<String> permissions;
 
 }
