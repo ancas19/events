@@ -16,6 +16,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -119,6 +120,24 @@ public class CustomExceptionHandler {
     public ResponseEntity<GeneralResponse<ErrorResponse>> handleMethodNotSupported(HttpRequestMethodNotSupportedException ex, WebRequest request) {
         log.error("Method Not Supported: {}", ex.getMessage(),ex);
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).
+                body(
+                        GeneralResponse.<ErrorResponse>builder()
+                                .message(Messages.MESSAGE_GENERAL_METHOD_NOT_ALLOW.getMessage())
+                                .response(
+                                        ErrorResponse.builder()
+                                                .timeStamp(LocalDateTime.now())
+                                                .details(request.getDescription(false))
+                                                .message(ex.getMessage())
+                                                .build()
+                                )
+                                .build()
+                );
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ResponseEntity<GeneralResponse<ErrorResponse>> handleNoResourceFoundException(NoResourceFoundException ex, WebRequest request) {
+        log.error("Method Not Supported: {}", ex.getMessage(),ex);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).
                 body(
                         GeneralResponse.<ErrorResponse>builder()
                                 .message(Messages.MESSAGE_GENERAL_NOT_FOUND.getMessage())

@@ -3,6 +3,7 @@ package co.com.events.use_cases.account;
 import co.com.events.models.domain.*;
 import co.com.events.models.enums.Messages;
 import co.com.events.models.exceptions.BadRequestException;
+import co.com.events.use_cases.code.VerifyCodeAdapter;
 import co.com.events.use_cases.interfaces.IUseCasesVoid;
 import co.com.events.use_cases.passwords.CreatePasswordAdapter;
 import co.com.events.use_cases.people.CreatePeopleAdapter;
@@ -24,12 +25,19 @@ public class CreateAccountAdapter implements IUseCasesVoid<Account> {
     private final CreatePeopleAdapter createPeopleAdapter;
     private  final CreateUserAdapter createUserAdapter;
     private final CreatePasswordAdapter createPasswordAdapter;
+    private final VerifyCodeAdapter verifyCodeAdapter;
     @Override
     public void execute(Account account) throws MessagingException {
         if(!account.getPassword().equals(account.getConfirmPassword())){
             log.error("Passwords do not match");
             throw new BadRequestException(Messages.MESSAGE_PASSWORDS_DO_NOT_MATCH.getMessage());
         }
+        this.verifyCodeAdapter.execute(
+                CodeVerification.builder()
+                        .email(account.getEmail())
+                        .code(account.getCode())
+                        .build()
+        );
         People peopleCreated= createPeopleAdapter.execute(
                 People.builder()
                         .names(account.getNames())

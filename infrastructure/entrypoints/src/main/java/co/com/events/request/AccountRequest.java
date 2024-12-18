@@ -29,7 +29,7 @@ public class AccountRequest {
     private String phoneNumber;
     @NotNull(message = "Username is required")
     @NotEmpty(message = "Username is required")
-    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must contain only letters and numbers")
+    @Pattern(regexp = "^[A-Z0-9]+$", message = "Username must contain only letters and numbers")
     private String username;
     @NotNull(message = "Role is required")
     @NotEmpty(message = "Role is required")
@@ -42,4 +42,8 @@ public class AccountRequest {
     @NotEmpty(message = "Confirm password is required")
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$", message = "Confirm password must contain at least 8 characters, one lowercase letter, one uppercase letter and one number")
     private String confirmPassword;
+    @NotNull(message = "Code is required")
+    @NotEmpty(message = "Code is required")
+    @Pattern(regexp = "^[0-9]{6}$", message = "Code must be 6 digits")
+    private String code;
 }

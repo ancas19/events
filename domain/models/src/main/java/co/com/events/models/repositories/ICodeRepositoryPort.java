@@ -6,4 +6,5 @@ public interface ICodeRepositoryPort {
     void save(Code code);
     String findByKey(String key);
     void delete(String key);
+    boolean verifyExists(String key);
 }

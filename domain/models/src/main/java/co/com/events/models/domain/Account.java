@@ -16,4 +16,5 @@ public class Account {
     private String role;
     private String password;
     private String confirmPassword;
+    private String code;
 }

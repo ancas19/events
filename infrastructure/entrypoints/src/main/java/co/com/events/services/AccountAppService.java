@@ -39,11 +39,6 @@ public class AccountAppService {
     }
 
     @Transactional(value ="eventsTransactionManager" ,rollbackFor = Exception.class)
-    public void verifyCode(CodeVerificationRequest codeVerificationRequest) throws MessagingException {
-        this.verifyCodeAdapter.execute(Mapper.map(codeVerificationRequest, CodeVerification.class));
-    }
-
-    @Transactional(value ="eventsTransactionManager" ,rollbackFor = Exception.class)
     public void createAccount(AccountRequest  accountRequest) throws MessagingException {
         this.createAccountAdapter.execute(Mapper.map(accountRequest, Account.class));
     }

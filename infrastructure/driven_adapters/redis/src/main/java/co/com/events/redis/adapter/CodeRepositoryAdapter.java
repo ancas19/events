@@ -8,6 +8,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import static co.com.events.models.enums.Constants.CODE;
@@ -40,5 +41,12 @@ public class CodeRepositoryAdapter implements ICodeRepositoryPort {
     public void delete(String key) {
         String finalkey=CODE.getValue().formatted(key);
         redisTemplate.delete(finalkey);
+    }
+
+    @Override
+    public boolean verifyExists(String key) {
+        String finalKey=CODE.getValue().formatted(key);
+        String code = valueOperations.get(finalKey);
+        return Objects.nonNull(code);
     }
 }

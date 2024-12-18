@@ -26,7 +26,7 @@ public interface PeopleRepository extends JpaRepository<PeopleEntity,Long> {
                 ),
                 u.email,
                 u.verifyEmail,
-                ui.changePassword
+                u.changePassword
             )
             FROM PeopleEntity p                      
             INNER JOIN UsersEntity u ON p.personId = u.personId

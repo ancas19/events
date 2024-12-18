@@ -4,6 +4,7 @@ import co.com.events.models.enums.Messages;
 import co.com.events.request.AccountRequest;
 import co.com.events.request.CodeVerificationRequest;
 import co.com.events.request.EmailRequest;
+import co.com.events.request.UsernameRequest;
 import co.com.events.responses.GeneralResponse;
 import co.com.events.services.AccountAppService;
 import jakarta.mail.MessagingException;
@@ -37,9 +38,9 @@ public class AccountController {
 
     @PostMapping("/username")
     public ResponseEntity<GeneralResponse<String>> verifyUsername(
-            @Valid @RequestBody EmailRequest emailRequest
-    ) {
-        this.accountAppService.verifyUsername(emailRequest.getEmail());
+            @Valid @RequestBody UsernameRequest usernameRequest
+            ) {
+        this.accountAppService.verifyUsername(usernameRequest.getUsername());
         return ResponseEntity.ok(
                 GeneralResponse.<String>builder()
                         .message(Messages.MESSAGE_USERNAME_AVAILABLE.getMessage())
@@ -57,19 +58,6 @@ public class AccountController {
                 GeneralResponse.<String>builder()
                         .message(Messages.MESSAGE_VERIFICATION_CODE.getMessage())
                         .response(Messages.MESSAGE_VERIFICATION_CODE.getMessage())
-                        .build()
-        );
-    }
-
-    @PostMapping("/code")
-    public ResponseEntity<GeneralResponse<String>> verifyCode(
-            @Valid @RequestBody CodeVerificationRequest codeVerificationRequest
-    ) throws MessagingException {
-        this.accountAppService.verifyCode(codeVerificationRequest);
-        return ResponseEntity.ok(
-                GeneralResponse.<String>builder()
-                        .response(Messages.MESSAGE_CODE_VERIFIED.getMessage())
-                        .message(Messages.MESSAGE_CODE_VERIFIED.getMessage())
                         .build()
         );
     }
